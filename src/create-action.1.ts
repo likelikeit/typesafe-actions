@@ -56,14 +56,12 @@ declare function createActions<
 >(actionMap?: { [P in keyof TMap]: TMap[P] }): TMap;
 
 const actions = createActions({
-  action1: (name: string, id: string) => ({
-    type: 'TYPE1',
-    payload: name,
-    meta: id,
-  }),
-  action2: (name: string, id: string) => ({
-    type: 'TYPE2',
-    payload: name,
-    meta: id,
-  }),
+  action1: ['TYPE1', (name: string, id: string) => name],
+  action2: [
+    'TYPE1',
+    (name: string, id: string) => ({
+      payload: name,
+      meta: id,
+    }),
+  ],
 });
